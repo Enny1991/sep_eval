@@ -1,0 +1,4 @@
+soundfile
+pystoi
+numpy
+mir_eval
