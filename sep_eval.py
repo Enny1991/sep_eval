@@ -28,8 +28,8 @@ def calc_sdr(deg, ref):
     return 10 * np.log10(true_power) - 10 * np.log10(res_power)  # (batch, 1)
 
 
-def full_eval(deg, ref, fs=8000, avg=True):
-    return {'pesq': np.mean(pesq(deg, ref, fs)) if avg else pesq(deg, ref, fs),
+def full_eval(deg, ref, fs=8000, avg=True, verbose=False):
+    return {'pesq': np.mean(pesq(deg, ref, fs, verbose=verbose)) if avg else pesq(deg, ref, fs),
             'stoi': np.mean(stoi(deg, ref, fs)) if avg else stoi(deg, ref, fs),
             'e_stoi': np.mean(stoi(deg, ref, fs, extended=True)) if avg else stoi(deg, ref, fs, extended=True),
             'sdr': np.mean(sdr(deg, ref)) if avg else sdr(deg, ref)}
@@ -59,19 +59,27 @@ def pesq(__deg, __ref, fs=8000, verbose=False):
         _deg /= np.max(np.abs(_deg))
         sf.write('/tmp/deg.wav', _deg, fs)
         sf.write('/tmp/ref.wav', _ref, fs)
-        p = subprocess.Popen("pesq /tmp/ref.wav /tmp/deg.wav +{}".format(fs), stdout=subprocess.PIPE, shell=True)
+        p = subprocess.Popen("cd /tmp/; pesq ref.wav deg.wav +{}".format(fs), stdout=subprocess.PIPE, shell=True)
         (output, err) = p.communicate()
         p_status = p.wait()
         if verbose:
             print("Output: {}".format(output))
             print("Error: {}".format(err))
             print("Status: {}".format(p_status))
+            # kk = output.split(' ')[-1]
+            # print("Float: {}".format(kk))
+            # print(len(kk))
+            # kkk = output.split('\t')[-1]
+            # print("Float: {}".format(kkk))
+            # print(len(kkk))
         try:
-            _pesq.append(float(output.split(' ')[-1]))
+            _pesq.append(float(output.split(' ')[-1][:6]))
         except ValueError:
             _pesq.append(np.nan)
-    os.remove('_pesq_itu_results.txt')
-    os.remove('_pesq_results.txt')
+    if os.path.exists('./_pesq_itu_results.txt'):
+        os.remove('_pesq_itu_results.txt')
+    if os.path.exists('./_pesq_results.txt'):
+        os.remove('_pesq_results.txt')
     return np.array(_pesq).squeeze()
 
 
