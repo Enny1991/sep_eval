@@ -3,3 +3,6 @@
 .idea/
 .ipynb_checkpoints/
 *.pyc
+/build/
+/sep_eval.egg-info/
+/dist/

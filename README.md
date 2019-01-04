@@ -1,4 +1,4 @@
-# SEP_EVAL: a collection of speech enhancement measures
+# SEP_EVAL: a collection of speech enhancement measures [![Build Status](https://travis-ci.com/Enny1991/sep_eval.svg?branch=master)](https://travis-ci.com/Enny1991/sep_eval.svg?branch=master)
 
 This small library collects some measures for source separation and speech enhancement.
 The library contains 

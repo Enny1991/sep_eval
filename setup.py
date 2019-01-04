@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(name='sep_eval',
-      version='0.1',
-      description='Am easy to use collection of Speech enhancement measures',
+      version='0.2',
+      description='An easy to use collection of Speech enhancement measures',
       url='https://github.com/Enny1991/sep_eval',
       author='Enea Ceolini (UZH Zurich)',
       author_email='enea.ceolini@ini.uzh.ch',
