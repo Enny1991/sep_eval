@@ -28,36 +28,36 @@ class TestSepEval(TestCase):
         self.assertEqual(self.fs, fs)
         self.enh2 = enh2
 
-    def test_pesq(self):
-
-        _pesq_deg = pesq(self.deg, self.ref)
-        _pesq_enh = pesq(self.enh, self.ref)
-
-        self.assertEqual(_pesq_deg, 2.202)
-        self.assertEqual(_pesq_enh, 2.619)
-        np.testing.assert_equal([_pesq_deg, _pesq_enh], [2.202,  2.619])
-        
-    def test_pesq_multiple_list(self):
-
-        _pesq_enh = pesq([self.enh, self.enh2], [self.ref, self.ref2])
-
-        self.assertAlmostEqual(len(_pesq_enh), 2)
-        np.testing.assert_almost_equal(_pesq_enh, [2.619, 2.648])
-
-        _pesq_enh_avg = pesq([self.enh, self.enh2], [self.ref, self.ref2], average=True)
-
-        np.testing.assert_almost_equal(_pesq_enh_avg, 2.6335)
-
-    def test_pesq_multiple_array(self):
-
-        _pesq_enh = pesq(np.array([self.enh, self.enh2]), np.array([self.ref, self.ref2]))
-
-        self.assertAlmostEqual(len(_pesq_enh), 2)
-        np.testing.assert_almost_equal(_pesq_enh, [2.619, 2.648])
-
-        _pesq_enh_avg = pesq(np.array([self.enh, self.enh2]), np.array([self.ref, self.ref2]), average=True)
-
-        np.testing.assert_almost_equal(_pesq_enh_avg, 2.6335)
+    # def test_pesq(self):
+    #
+    #     _pesq_deg = pesq(self.deg, self.ref)
+    #     _pesq_enh = pesq(self.enh, self.ref)
+    #
+    #     self.assertEqual(_pesq_deg, 2.202)
+    #     self.assertEqual(_pesq_enh, 2.619)
+    #     np.testing.assert_equal([_pesq_deg, _pesq_enh], [2.202,  2.619])
+    #
+    # def test_pesq_multiple_list(self):
+    #
+    #     _pesq_enh = pesq([self.enh, self.enh2], [self.ref, self.ref2])
+    #
+    #     self.assertAlmostEqual(len(_pesq_enh), 2)
+    #     np.testing.assert_almost_equal(_pesq_enh, [2.619, 2.648])
+    #
+    #     _pesq_enh_avg = pesq([self.enh, self.enh2], [self.ref, self.ref2], average=True)
+    #
+    #     np.testing.assert_almost_equal(_pesq_enh_avg, 2.6335)
+    #
+    # def test_pesq_multiple_array(self):
+    #
+    #     _pesq_enh = pesq(np.array([self.enh, self.enh2]), np.array([self.ref, self.ref2]))
+    #
+    #     self.assertAlmostEqual(len(_pesq_enh), 2)
+    #     np.testing.assert_almost_equal(_pesq_enh, [2.619, 2.648])
+    #
+    #     _pesq_enh_avg = pesq(np.array([self.enh, self.enh2]), np.array([self.ref, self.ref2]), average=True)
+    #
+    #     np.testing.assert_almost_equal(_pesq_enh_avg, 2.6335)
 
     def test_stoi_single(self):
 
