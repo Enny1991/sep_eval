@@ -6,6 +6,7 @@ from pystoi.stoi import stoi as source_stoi
 import subprocess
 import os
 from copy import deepcopy as dc
+import sys
 
 
 def calc_sdr(degraded, reference):
@@ -40,7 +41,7 @@ def full_eval(degraded, reference, fs=8000, average=False, verbose=False):
 def pesq(degraded, reference, fs=8000, verbose=False, average=False):
     """
     Help with installing pesq:
-    Download the binaries from here: https://www.itu.int/rec/T-REC-P.862-200511-I!Amd2/en
+    Download the binaries from here: https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-P.862-200511-I!Amd2!SOFT-ZST-E&type=items
     unzip and cd to Software/P862_annex_A_2005_CD/source
     the run
     gcc -o PESQ *.c -lm
@@ -48,6 +49,7 @@ def pesq(degraded, reference, fs=8000, verbose=False, average=False):
     add this location to path
     DONE!
     """
+    print(sys.path)
     deg = dc(degraded)
     ref = dc(reference)
     if fs != 8000 and fs != 16000:
