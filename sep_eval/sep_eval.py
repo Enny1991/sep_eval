@@ -49,7 +49,6 @@ def pesq(degraded, reference, fs=8000, verbose=False, average=False):
     add this location to path
     DONE!
     """
-    print(sys.path)
     deg = dc(degraded)
     ref = dc(reference)
     if fs != 8000 and fs != 16000:
