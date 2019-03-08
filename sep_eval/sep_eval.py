@@ -70,7 +70,7 @@ def pesq(degraded, reference, fs=8000, verbose=False, average=False):
             print("Error: {}".format(err))
             print("Status: {}".format(p_status))
         try:
-            _pesq.append(float(output.split(' ')[-1][:6]))
+            _pesq.append(float(output.decode("utf-8").split(' ')[-1][:6]))
         except ValueError:
             _pesq.append(np.nan)
     if os.path.exists('./_pesq_itu_results.txt'):
